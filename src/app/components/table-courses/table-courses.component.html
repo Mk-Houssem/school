@@ -1,0 +1,23 @@
+<table class="table table-striped text-center">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Duree</th>
+        <th>Actions</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let elt of coursesTab">
+        <td>{{elt.name}}</td>
+        <td>{{elt.description}}</td>
+        <td>{{elt.duration}}</td>
+        <td>
+          <button class="btn btn-warning mr-2" (click)="goToEdit(elt._id)">Edit</button>
+          <button class="btn btn-danger mr-2" (click)="deleteCourse(elt._id)">Delete</button>
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>

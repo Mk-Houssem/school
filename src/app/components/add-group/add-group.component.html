@@ -1,0 +1,76 @@
+<!-- Registration Start -->
+<div class="container-fluid bg-registration py-5" style="margin: 90px 0;">
+    <div class="container py-5">
+        <div class="row align-items-center">
+
+            <div class="col-lg-5">
+                <div class="card border-0">
+                    <div class="card-header bg-light text-center p-2">
+                        <h1 class="m-0">Add Group</h1>
+                    </div>
+                    <div class="card-body rounded-bottom bg-primary p-4">
+                        <form #groupForm="ngForm" (ngSubmit)="addGroup()">
+                            <div class="form-group">
+                                <label for="name">Name Group</label>
+                                <input class="form-control" name="name" [(ngModel)]="group.name" placeholder="Name"
+                                    #name="ngModel" required>
+                                <span *ngIf="(name.touched || groupForm.submitted) && name.errors?.required">
+                                    Name is required</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="teacher">Teacher</label>
+                                <select class="form-control" name="teacher" (change)="select($event,'teacher')">
+                                    <option>Please Select Teacher</option>
+                                    <option *ngFor="let t of teachers" [value]="t._id">{{ t.firstName }} {{
+                                        t.lastName }}</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="course">Course</label>
+                                <select class="form-control" name="course" (change)="select($event,'course')">
+                                    <option>Please Select Course</option>
+                                    <option *ngFor="let c of courses" [value]="c._id">{{ c.name }}</option>
+
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label for="student">Students</label>
+                                    <div class="form-check">
+                                        <label *ngFor="let s of students" class="form-check-label d-block">
+                                            <input type="checkbox" class="form-check-input"
+                                                (change)="select($event,'student')" [value]="s._id" required> {{
+                                            s.firstName }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group text-center mt-3">
+                                <button [disabled]="groupForm.invalid" type="submit"
+                                    class="btn btn-dark btn-block py-1 mt-3">Add
+                                    Group</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 mb-5 mb-lg-0">
+                <div class="team-item rounded overflow-hidden mb-2" *ngFor="let s of students">
+                    <div *ngIf="s._id==selectedStudentIds">
+                        <div class="team-img position" style="width: min-content;">
+                            <div class="bg-secondary p-4 text-center">
+                                <img [src]="s.file">
+                                <h5>{{ 'Name: ' + s.firstName +' '+s.lastName}}</h5>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Registration End -->

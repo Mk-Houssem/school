@@ -1,0 +1,38 @@
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="text-center">Group Name</th>
+        <th class="text-center">Delete Group</th>
+        <th class="text-center">Course Name</th>
+        <th class="text-center">Teacher Name</th>
+        <th class="text-center">Students and Evaluation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let elt of groupsTab">
+        <td class="text-center">{{ elt.name }}</td>
+        <td class="text-center">
+          <button class="btn btn-danger mt-2 mr-2"
+          (click)="deleteGroup(elt._id)">Delete</button>
+        </td>
+        <td class="text-center">{{ elt.courseId.name }}</td>
+        <td class="text-center">{{ elt.teacherId.firstName }} {{ elt.teacherId.lastName }}</td>
+        <td class="text-center">
+          <ol>
+            <li *ngFor="let student of elt.studentsIds">
+              {{ student.firstName }} {{ student.lastName }}
+              <div class="btn-group btn-group-horizontal">
+                <div *ngFor="let bulletin of bulletins">
+                  <div *ngIf="bulletin.groupId == elt._id && bulletin.studentId == student._id">
+                    <button class="btn btn-primary mt-2 mr-2"
+                      (click)="displayStudent(elt._id, student._id)">Display</button>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  

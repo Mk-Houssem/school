@@ -1,0 +1,22 @@
+<table class="table table-striped">
+    <thead>
+        <tr class="text-center">
+            <th>Name Student</th>
+            <th>Name Teacher</th>
+            <th>Name Course</th>
+            <th>Name Group</th>
+            <th>Note</th>
+            <th>Evaluation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-center" *ngFor="let elt of bulletins">
+            <td>{{ elt.studentId.firstName }} {{ elt.studentId.lastName }}</td>
+            <td>{{ elt.groupId.teacherId.firstName }} {{ elt.groupId.teacherId.lastName }}</td>
+            <td>{{ elt.groupId.courseId.name }}</td>
+            <td>{{ elt.groupId.name }}</td>
+            <td>{{ elt.note }}</td>
+            <td>{{ elt.evaluation }} </td>
+        </tr>
+    </tbody>
+</table>

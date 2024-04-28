@@ -1,0 +1,43 @@
+<!-- Registration Start -->
+<div class="container-fluid bg-registration py-5" style="margin: 90px 0;">
+    <div class="container py-5">
+        <div class="row align-items-center">
+
+            <div class="col-lg-5">
+                <div class="card border-0">
+                    <div class="card-header bg-light text-center p-2">
+                        <h1 class="m-0">Search Teacher</h1>
+                    </div>
+                    <div class="card-body rounded-bottom bg-primary p-4">
+                        <form #searchForm="ngForm" (ngSubmit)="searchTeacher()">
+                            <div class="form-group">
+                                <input type="text" class="form-control" [(ngModel)]="teacher.speciality"
+                                    name="speciality" placeholder="speciality" #speciality="ngModel" required />
+                                <span
+                                    *ngIf="(speciality.touched || searchForm.submitted) && speciality.errors?.required">
+                                    speciality is required</span>
+
+                            </div>
+
+                            <div class="form-group text-center mt-3">
+                                <input type="submit" [disabled]="searchForm.invalid"
+                                    class="btn btn-dark btn-block border-0 py-1 mt-3" value="search">
+                            </div>
+                            <span style="color: red;">{{errorMsg}}</span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 mb-5 mb-lg-0">
+                <div class="mb-4 text-right">
+                    <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Search Teacher</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngFor="let m of searchTeachers">
+        <app-teacher [teacherInput]="m" (teacherOutput)="updateTeachers($event)" ></app-teacher>
+    </div>
+</div>
+<!-- Registration End -->

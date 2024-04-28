@@ -1,0 +1,101 @@
+<!-- Registration Start -->
+<div class="container-fluid bg-registration py-5" style="margin: 90px 0;">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-7 mb-5 mb-lg-0">
+                <div class="mb-4">
+                    <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Edit</h5>
+                    <h1 class="text-white">{{title}}</h1>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="card border-0">
+                    <div class="card-header bg-light text-center p-2">
+                        <h1 class="m-0">Edit Your Account</h1>
+                    </div>
+                    <div class="card-body rounded-bottom bg-primary p-4">
+                        <form [formGroup]="editUserForm">
+                            <div class="form-group">
+                                <input type="text" class="form-control border-0 p-3" formControlName="firstName" [(ngModel)]="findedUser.firstName"
+                                    placeholder="Your First Name" />
+                            </div>
+                            <div *ngIf="editUserForm.controls['firstName'].invalid &&
+                    (editUserForm.controls['firstName'].dirty || editUserForm.controls['firstName'].touched)
+                    ">
+                                <div *ngIf="editUserForm.controls['firstName'].errors.required">First Name is required
+                                </div>
+                                <div *ngIf="editUserForm.controls['firstName'].errors.minlength">First Name must have at
+                                    least 3 chars</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control border-0 p-3" formControlName="lastName" [(ngModel)]="findedUser.lastName"
+                                    placeholder="Your Last Name" />
+                            </div>
+                            <div *ngIf="editUserForm.controls['lastName'].invalid &&
+                            (editUserForm.controls['lastName'].dirty || editUserForm.controls['lastName'].touched)
+                            ">
+                                <div *ngIf="editUserForm.controls['lastName'].errors.required">Last Name is required</div>
+                                <div *ngIf="editUserForm.controls['lastName'].errors.minlength">Last Name must have at
+                                    least 5 chars</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control border-0 p-3" formControlName="email" [(ngModel)]="findedUser.email"
+                                    placeholder="Your email" />
+                            </div>
+                            <div *ngIf="editUserForm.controls['email'].invalid && (editUserForm.controls['email'].dirty || editUserForm.controls['email'].touched)
+                    ">
+                                <div *ngIf="editUserForm.controls['email'].errors.required">Email is required</div>
+                                <div *ngIf="editUserForm.controls['email'].errors.email">Not Email</div>
+                            </div>
+                            <div class="form-group" *ngIf="role=='teacher'">
+                                <input type="text" class="form-control border-0 p-3" formControlName="speciality" [(ngModel)]="findedUser.speciality"
+                                    placeholder="Your Speciality " />
+                            </div>
+                            <div *ngIf="editUserForm.controls['speciality'].invalid &&
+                            (editUserForm.controls['speciality'].dirty || editUserForm.controls['speciality'].touched)
+                            ">
+                                <div *ngIf="editUserForm.controls['speciality'].errors.required">Speciality is required
+                                </div>
+                                <div *ngIf="editUserForm.controls['speciality'].errors.minlength">Speciality must have at
+                                    least 5 chars</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" class="form-control border-0 p-3" formControlName="tel" [(ngModel)]="findedUser.tel"
+                                    placeholder="Your Phone Number" />
+                            </div>
+                            <div *ngIf="editUserForm.controls['tel'].invalid &&
+                    (editUserForm.controls['tel'].dirty || editUserForm.controls['tel'].touched)
+                    ">
+                                <div *ngIf="editUserForm.controls['tel'].errors.required">Phone Number is required</div>
+                                <div *ngIf="editUserForm.controls['tel'].errors.pattern">Phone Number must have 8
+                                    Numbers
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="text" class="form-control border-0 p-3" formControlName="address" [(ngModel)]="findedUser.address"
+                                    placeholder="Your Address" />
+                            </div>
+                            <div *ngIf="editUserForm.controls['address'].invalid &&
+                    (editUserForm.controls['address'].dirty || editUserForm.controls['address'].touched)
+                    ">
+                                <div *ngIf="editUserForm.controls['address'].errors.required">Address is required</div>
+                                <div *ngIf="editUserForm.controls['address'].errors.minlength">Address must have at least
+                                    6 chars
+                                </div>
+                                <div *ngIf="editUserForm.controls['address'].errors.maxlength">Address must have at max 12
+                                    chars
+                                </div>
+                            </div>
+                            <div class="form-group text-center mt-3">
+                                <input type="submit" (click)="editProfile()"
+                                    class="btn btn-dark btn-block border-0 py-1 mt-3" value="Edit">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Registration End -->

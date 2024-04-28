@@ -1,0 +1,20 @@
+<table class="table table-striped text-center">
+  <thead>
+    <tr>
+      <th>Group Name</th>
+      <th>Course Name</th>
+      <th>Teacher Name</th>
+      <th>Evaluation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let elt of bulletinsStudentTab">
+      <td>{{ elt.groupId.name }}</td>
+      <td>{{ elt.groupId.courseId.name }}</td>
+      <td>{{ elt.groupId.teacherId.firstName }} {{ elt.groupId.teacherId.lastName }} </td>
+      <td>
+        <button class="btn btn-warning mt-2 mr-2" (click)="displayStudent(elt._id)">Display</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

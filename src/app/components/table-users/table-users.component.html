@@ -1,0 +1,46 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>
+                <div>
+                    <a class="dropdown-toggle" data-toggle="dropdown">Role</a>
+                    <div class="dropdown-menu rounded-0 m-0">
+                        <a class="dropdown-item" (click)="filterTableByRole('admin')">Admin</a>
+                        <a class="dropdown-item" (click)="filterTableByRole('teacher')">Teacher</a>
+                        <a class="dropdown-item" (click)="filterTableByRole('student')">Student</a>
+                        <a class="dropdown-item" (click)="filterTableByRole('parent')">Parent</a>
+                    </div>
+                </div>
+            </th>
+            <th *ngIf="x === 'teacher'">Speciality</th>
+            <th *ngIf="x === 'teacher'">CV</th>
+            <th>Address</th>
+            <th *ngIf="x === 'parent'">Child Number</th>
+            <th>Phone Number</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of roleTab">
+            <td>{{ user._id }}</td>
+            <td>{{ user.firstName }} {{ user.lastName }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.role }}</td>
+            <td *ngIf="user.role === 'teacher'">{{ user.speciality }}</td>
+            <td *ngIf="user.role === 'teacher'">
+                <button class="btn btn-warning" (click)="displayCV(user._id)">Display CV</button>
+            </td>
+            <td>{{ user.address }}</td>
+            <td *ngIf="user.role === 'parent'">{{ user.telChild }}</td>
+            <td>{{ user.tel }}</td>
+            <td>
+                <button *ngIf="user.role === 'teacher' && user.status === 'en Attente'" class="btn btn-success"
+                    (click)="confirmTeacher(user._id)">Confirm</button>
+                <button class="btn btn-danger" (click)="deleteUser(user._id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
